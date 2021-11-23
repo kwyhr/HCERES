@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="org.centrale.hceres_HCERES_war_1.0PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>org.centrale.hceres.items.PhdType</class>
+    <class>org.centrale.hceres.items.Researcher</class>
+    <class>org.centrale.hceres.items.PublicOutreach</class>
+    <class>org.centrale.hceres.items.ContractType</class>
+    <class>org.centrale.hceres.items.Book</class>
+    <class>org.centrale.hceres.items.FunctionEditorialActivity</class>
+    <class>org.centrale.hceres.items.ToolProduct</class>
+    <class>org.centrale.hceres.items.EvaluationThesis</class>
+    <class>org.centrale.hceres.items.ProjectEvaluationRole</class>
+    <class>org.centrale.hceres.items.ToolProductInvolvment</class>
+    <class>org.centrale.hceres.items.PhdAssociatedCompany</class>
+    <class>org.centrale.hceres.items.LearnedScientificSocietyRole</class>
+    <class>org.centrale.hceres.items.Funder</class>
+    <class>org.centrale.hceres.items.InstitutionalComitee</class>
+    <class>org.centrale.hceres.items.Employer</class>
+    <class>org.centrale.hceres.items.Admin</class>
+    <class>org.centrale.hceres.items.Network</class>
+    <class>org.centrale.hceres.items.TeamReferent</class>
+    <class>org.centrale.hceres.items.Parameter</class>
+    <class>org.centrale.hceres.items.PublicationType</class>
+    <class>org.centrale.hceres.items.LearnedScientificSociety</class>
+    <class>org.centrale.hceres.items.ProjectEvaluationCategory</class>
+    <class>org.centrale.hceres.items.ScientificExpertiseType</class>
+    <class>org.centrale.hceres.items.MailActivity</class>
+    <class>org.centrale.hceres.items.SeiNetworkUnitCreation</class>
+    <class>org.centrale.hceres.items.ToolProductRole</class>
+    <class>org.centrale.hceres.items.EducationLevel</class>
+    <class>org.centrale.hceres.items.Company</class>
+    <class>org.centrale.hceres.items.ScientificExpertise</class>
+    <class>org.centrale.hceres.items.CompanyCreation</class>
+    <class>org.centrale.hceres.items.Institution</class>
+    <class>org.centrale.hceres.items.TypeOralCommunication</class>
+    <class>org.centrale.hceres.items.EvaluationThesisRole</class>
+    <class>org.centrale.hceres.items.OutgoingMobility</class>
+    <class>org.centrale.hceres.items.IncomingMobility</class>
+    <class>org.centrale.hceres.items.ResearchContractFundedPublicCharitableInst</class>
+    <class>org.centrale.hceres.items.PostDoc</class>
+    <class>org.centrale.hceres.items.Supervisor</class>
+    <class>org.centrale.hceres.items.MailTemplate</class>
+    <class>org.centrale.hceres.items.LaboratoryEvaluation</class>
+    <class>org.centrale.hceres.items.TypePatent</class>
+    <class>org.centrale.hceres.items.Language</class>
+    <class>org.centrale.hceres.items.Status</class>
+    <class>org.centrale.hceres.items.InvitedSeminar</class>
+    <class>org.centrale.hceres.items.BookChapter</class>
+    <class>org.centrale.hceres.items.SeiCifreFellowship</class>
+    <class>org.centrale.hceres.items.ReviewingJournalArticles</class>
+    <class>org.centrale.hceres.items.EditorialActivity</class>
+    <class>org.centrale.hceres.items.NationalInternationalCollaboration</class>
+    <class>org.centrale.hceres.items.Meeting</class>
+    <class>org.centrale.hceres.items.SeiIndustrialRDContract</class>
+    <class>org.centrale.hceres.items.ProjectEvaluation</class>
+    <class>org.centrale.hceres.items.Team</class>
+    <class>org.centrale.hceres.items.Connection</class>
+    <class>org.centrale.hceres.items.Nationality</class>
+    <class>org.centrale.hceres.items.TypeActivity</class>
+    <class>org.centrale.hceres.items.Activity</class>
+    <class>org.centrale.hceres.items.SeiClinicalTrial</class>
+    <class>org.centrale.hceres.items.TypeConsortium</class>
+    <class>org.centrale.hceres.items.PublicOutreachType</class>
+    <class>org.centrale.hceres.items.TypeThesis</class>
+    <class>org.centrale.hceres.items.LabcomCreation</class>
+    <class>org.centrale.hceres.items.Education</class>
+    <class>org.centrale.hceres.items.SeiLeadConsortiumIndustry</class>
+    <class>org.centrale.hceres.items.MeetingCongressOrg</class>
+    <class>org.centrale.hceres.items.Journal</class>
+    <class>org.centrale.hceres.items.Laboratory</class>
+    <class>org.centrale.hceres.items.BelongsTeam</class>
+    <class>org.centrale.hceres.items.Platform</class>
+    <class>org.centrale.hceres.items.Publication</class>
+    <class>org.centrale.hceres.items.SrAward</class>
+    <class>org.centrale.hceres.items.Contract</class>
+    <class>org.centrale.hceres.items.TypeCollab</class>
+    <class>org.centrale.hceres.items.TypeResearchContract</class>
+    <class>org.centrale.hceres.items.Patent</class>
+    <class>org.centrale.hceres.items.LaboratoryEvaluationRole</class>
+    <class>org.centrale.hceres.items.PublicationStatistics</class>
+    <class>org.centrale.hceres.items.OralCommunication</class>
+    <class>org.centrale.hceres.items.ToolProductType</class>
+    <class>org.centrale.hceres.items.PhdStudent</class>
+    <class>org.centrale.hceres.items.EducationInvolvment</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hceres"/>
+      <property name="javax.persistence.jdbc.user" value="hceres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="hceres"/>
+    </properties>
+  </persistence-unit>
+</persistence>

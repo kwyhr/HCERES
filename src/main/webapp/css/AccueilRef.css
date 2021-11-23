@@ -1,0 +1,90 @@
+div#equipe {
+	float:left;
+	width:30%;
+	height: 100%;
+	margin: 0;
+	}
+div#historique {
+	float:right;
+	width:70%;
+	height: 100%;
+	margin: 0;
+}
+nav{
+	width: 100%;
+	margin: 0 auto;
+	background-color: whitesmoke;
+	position: sticky;
+	top: 0;
+}
+
+nav ul{
+	list-style-type: none;
+}
+
+nav ul li{
+	float: left;
+	width: 25%;
+	text-align: center;
+}
+
+nav ul::after{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+
+.titrePage{
+    text-align: center;
+}
+
+.description{
+    position: relative;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.informations{
+    position: relative;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#choix_suppression{
+	position: relative;
+	width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#connexion{
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
+
+img.resize {
+	max-width:50%;
+	max-height:50%;
+  }
+
+ img.resize15 {
+	max-width:15%;
+	max-height:15%;
+  }
+
+#logo{
+    position: absolute;
+    left: 5%;
+    top: 5%;
+}
+
+
+#aboutLink{
+	position : absolute;
+	bottom: 5%;
+	right: 5%;
+}
