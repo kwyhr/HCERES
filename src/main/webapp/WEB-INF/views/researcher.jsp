@@ -4,7 +4,7 @@
 <html>
     <head>
         <title>Researcher Informations</title>
-        <meta charset="UTF-8"/> 
+        <meta charset="UTF-10"/> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Local -->
@@ -36,194 +36,229 @@
         <h1 class="headTitle">Création / Modification chercheur</h1> 
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br/></div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <form action="newChercheur.do" method="POST">
-                <table align="center"> 
-                    <tr>
-                        <td>Nom</td> 
-                        <td><input type="text" name="nameResearcher" placeholder="Nom" value="<c:if test='${! empty researcher}'>${researcher.researcherName}</c:if>"/></td> 
-                        </tr> 
 
-                        <tr>
-                            <td>Prénom</td> 
-                            <td><input type="text" name="surnameResearcher" placeholder="Prénom" value="<c:if test='${! empty researcher}'>${researcher.researcherSurname}</c:if>"/></td> 
-                        </tr> 
-
-                        <tr>
-                            <td>E-mail</td> 
-                            <td><input type="text" name="emailAddress" value="<c:if test='${! empty researcher}'>${researcher.researcherEmail}</c:if>"/></td> 
-                        </tr>
-
-                        <tr>
-                            <td>Numéro ORCID</td> 
-                            <td><input type="text" name="idOrcidResearcher" placeholder="ORCID"  value="<c:if test='${! empty researcher}'>${researcher.researcherOrcid}</c:if>"/></td> 
-                        </tr> 
-
-                        <tr>
-                            <td>Nom de l'employeur (*)</td> 
-                            <td>
-                            <c:choose>
-                                <c:when test="${empty researcher}"><c:set var="currentContract" value="" /></c:when>
-                                <c:otherwise><c:set var="currentContract" value="${researcher.currentContract}" /></c:otherwise>
-                            </c:choose>
-
-                            <select name="idEmployer" id="idEmployer">
-                                <option value="-1">Inconnu</option>
-                                <c:forEach var="employer" items="${listEmployer}">
-                                    <c:choose>
-                                        <c:when test="${empty currentContract}"><option value="${employer.idEmployer}">${employer.nameEmployer}</option></c:when>
-                                        <c:when test="${employer.idEmployer == currentContract.idContract}"><option value="${employer.idEmployer}" selected="selected">${employer.nameEmployer}</option></c:when>
-                                        <c:otherwise><option value="${employer.idEmployer}">${employer.nameEmployer}</option></c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Statut</td>
-                        <td>
-                            <select name="Statut" id="statut">
-                                <option value="-1">Inconnu</option>
-                                <c:forEach var="status" items="${listStatus}">
-                                    <c:choose>
-                                        <c:when test="${empty currentContract}"><option value="${status.idStatus}">${status.nameStatus}</option></c:when>
-                                        <c:when test="${status.idStatus == currentContract.idStatus}"><option value="${status.idStatus}" selected="selected">${status.nameStatus}</option></c:when>
-                                        <c:otherwise><option value="${status.idStatus}">${status.nameStatus}</option></c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </select>
-                        </td> 
-                    </tr>
-
-                    <tr>
-                        <td>Type de contrat</td>
-                        <td>
-                            <select name="contractType">
-                                <option value="CDD" selected="selected">CDD</option> 
-                                <option value="CDI" >CDI</option> 
-                            </select> 
-                        </td> 
-                    </tr>
-
-                    <tr>
-                        <td>Laboratoire</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${empty researcher}"><c:set var="currentLab" value="" /></c:when>
-                                <c:otherwise><c:set var="currentLab" value="${researcher.currentLaboratory}" /></c:otherwise>
-                            </c:choose>
-
-                            <select name="laboratory" id="laboratory">
-                                <option value="-1">Inconnu</option>
-                                <c:forEach var="laboratory" items="${listLaboratories}">
-                                    <c:choose>
-                                        <c:when test="${empty currentLab}"><option value="${laboratory.laboratoryId}">${laboratory.laboratoryName}</option></c:when>
-                                        <c:when test="${laboratory.laboratoryId == currentLab.laboratoryId}"><option value="${laboratory.laboratoryId}" selected="selected">${laboratory.laboratoryName}</option></c:when>
-                                        <c:otherwise><option value="${laboratory.laboratoryId}">${laboratory.laboratoryName}</option></c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </select>
-                        </td> 
-                    </tr>
-
-                    <tr>
-                        <td>Equipe</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${empty researcher}"><c:set var="currentTeam" value="" /></c:when>
-                                <c:otherwise><c:set var="currentTeam" value="${researcher.currentBelongsTeam}" /></c:otherwise>
-                            </c:choose>
-
-                            <select name="team" id="team">
-                                <option value="-1">Inconnu</option>
-                                <c:forEach var="team" items="${listTeams}">
-                                    <c:choose>
-                                        <c:when test="${empty currentTeam}"><option value="${team.teamId}">${team.teamName}</option></c:when>
-                                        <c:when test="${empty currentTeam.teamId}"><option value="${team.teamId}">${team.teamName}</option></c:when>
-                                        <c:when test="${team.teamId == currentTeam.teamId.teamId}"><option value="${team.teamId}" selected="selected">${team.teamName}</option></c:when>
-                                        <c:otherwise><option value="${team.teamId}">${team.teamName}</option></c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </select>
-                        </td> 
-                    </tr>
-
-                    <tr>
-                        <td>Fonction</td> 
-                        <td><input type="text" name="function"/></td> 
-                    </tr>
-
-                    <tr id="phdData">
-                        <td colspan="2"><hr/></td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2">Informations pour les doctorants</td>
-                    </tr>
-
-                    <tr>
-                        <td>Date de démarrage</td> 
-                        <td><input type="text" name="phdStart"/></td> 
-                    </tr>
-
-                    <tr>
-                        <td>Date soutenance (si connue)</td> 
-                        <td><input type="text" name="phdDefense"/></td> 
-                    </tr>
-
-                    <tr>
-                        <td>Type</td> 
-                        <td>
-                            <select name="phdType" id="phdType">
-                                <option value="-1">Inconnu</option>
-                                <c:forEach var="phdType" items="${listPhdType}">
-                                    <c:choose>
-                                        <c:when test="${empty phdstudent}"><option value="${phdType.phdTypeId}">${phdType.phdTypeName}</option></c:when>
-                                        <c:when test="${empty phdstudent.phdTypeId}"><option value="${phdType.phdTypeId}">${phdType.phdTypeName}</option></c:when>
-                                        <c:when test="${phdType.phdTypeId == phdstudent.phdTypeId.phdTypeId}"><option value="${phdType.phdTypeId}" selected="selected">${phdType.phdTypeName}</option></c:when>
-                                        <c:otherwise><option value="${phdType.phdTypeId}">${phdType.phdTypeName}</option></c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </select>
-                        </td> 
-                    </tr>
-
-                    <tr>
-                        <td>Encadrants</td> 
-                        <td></td>
-                    </tr>
-
-                    <!--
-                    <tr>
-                        <td>Encordrez vous un doctorant?</td> 
-                        <td><input type="radio" name="encadreDoct" value="Oui"/>Oui
-                            <input type="radio" name="encadreDoct" value="Non" />Non 
-                        </td> 
-                    </tr> 
-                    
-                    <tr>
-                        <td> Si oui, indique de qui il s'agit</td>
-                        <td>
-                        <select name="Quel_doctorant">
-                                <option value="Nom_doctorant_1" selected="selected">Nom_doctorant_1</option> 
-                                <option value="Nom_doctorant_2">Nom_doctorant_1</option> 
-                                <option value="Nom_doctorant_3">Nom_doctorant_3</option> 
-                        </select> 
-                        </td>     
-                    </tr> 
-                    -->
-
-                    <tr>
-                        <td> </td>
-                        <td align="right"><input type="submit" value="Valider"/></td> 
-                    </tr> 
-                </table> 
-
-                <input type="hidden" name="idResearcher" value="<c:choose><c:when test="${! empty researcher}">${researcher.researcherId}</c:when><c:otherwise>-1</c:otherwise></c:choose>" />
-                    </form>
+        <form action="newChercheur.do" method="POST">
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="nameResearcher" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Nom</label> 
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                    <input type="text" class="form-control" name="nameResearcher" placeholder="Nom" value="<c:if test='${! empty researcher}'>${researcher.researcherName}</c:if>"/>
+                    </div> 
                 </div>
-        <%@ include file="footer.jspf" %>
 
-    </body>
+                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="surnameResearcher" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Prénom</label> 
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                        <input type="text" class="form-control"  name="surnameResearcher" placeholder="Prénom" value="<c:if test='${! empty researcher}'>${researcher.researcherSurname}</c:if>"/>
+                    </div> 
+                </div>
+
+                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="emailAddress" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">E-mail</label> 
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                        <input type="text" class="form-control"  name="emailAddress" value="<c:if test='${! empty researcher}'>${researcher.researcherEmail}</c:if>"/>
+                    </div> 
+                </div>
+
+                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="author" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Numéro ORCID</label> 
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 "><input type="text" class="form-control"  name="idOrcidResearcher" placeholder="ORCID"  value="<c:if test='${! empty researcher}'>${researcher.researcherOrcid}</c:if>"/>
+                    </div> 
+                </div>
+
+                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="nationality" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Nationalité</label> 
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                        <select name="nationality" multiple size="5" class="fullsize">
+                        <c:forEach var="nationality" items="${listNationalities}">
+                            <c:choose>
+                                <c:when test="${empty researcher}"><option value="${nationality.nationalityId}">${nationality.nationalityName}</option></c:when>
+                                <c:when test="${nationality.nationalityId == currentContract.nationalityId}"><option value="${nationality.nationalityId}" selected="selected">${nationality.nationalityName}</option></c:when>
+                                <c:otherwise><option value="${nationality.nationalityId}">${nationality.nationalityName}</option></c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                </div> 
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="idEmployer" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Nom de l'employeur</label> 
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                    <c:choose>
+                        <c:when test="${empty researcher}"><c:set var="currentContract" value="" /></c:when>
+                        <c:otherwise><c:set var="currentContract" value="${researcher.currentContract}" /></c:otherwise>
+                    </c:choose>
+
+                    <select name="idEmployer" id="idEmployer">
+                        <option value="-1">Inconnu</option>
+                        <c:forEach var="employer" items="${listEmployer}">
+                            <c:choose>
+                                <c:when test="${empty currentContract}"><option value="${employer.idEmployer}">${employer.nameEmployer}</option></c:when>
+                                <c:when test="${employer.idEmployer == currentContract.idContract}"><option value="${employer.idEmployer}" selected="selected">${employer.nameEmployer}</option></c:when>
+                                <c:otherwise><option value="${employer.idEmployer}">${employer.nameEmployer}</option></c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="Statut" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Statut</label>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                    <select name="Statut" id="statut">
+                        <option value="-1">Inconnu</option>
+                        <c:forEach var="status" items="${listStatus}">
+                            <c:choose>
+                                <c:when test="${empty currentContract}"><option value="${status.idStatus}">${status.nameStatus}</option></c:when>
+                                <c:when test="${status.idStatus == currentContract.idStatus}"><option value="${status.idStatus}" selected="selected">${status.nameStatus}</option></c:when>
+                                <c:otherwise><option value="${status.idStatus}">${status.nameStatus}</option></c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                </div> 
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="contractType" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Type de contrat</label>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                    <select name="contractType">
+                        <option value="CDD" selected="selected">CDD</option> 
+                        <option value="CDI" >CDI</option> 
+                    </select> 
+                </div> 
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="laboratory" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Laboratoire</label>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                    <c:choose>
+                        <c:when test="${empty researcher}"><c:set var="currentLab" value="" /></c:when>
+                        <c:otherwise><c:set var="currentLab" value="${researcher.currentLaboratory}" /></c:otherwise>
+                    </c:choose>
+
+                    <select name="laboratory" id="laboratory">
+                        <option value="-1">Inconnu</option>
+                        <c:forEach var="laboratory" items="${listLaboratories}">
+                            <c:choose>
+                                <c:when test="${empty currentLab}"><option value="${laboratory.laboratoryId}">${laboratory.laboratoryName}</option></c:when>
+                                <c:when test="${laboratory.laboratoryId == currentLab.laboratoryId}"><option value="${laboratory.laboratoryId}" selected="selected">${laboratory.laboratoryName}</option></c:when>
+                                <c:otherwise><option value="${laboratory.laboratoryId}">${laboratory.laboratoryName}</option></c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                </div> 
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="team" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Equipe</label>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                    <c:choose>
+                        <c:when test="${empty researcher}"><c:set var="currentTeam" value="" /></c:when>
+                        <c:otherwise><c:set var="currentTeam" value="${researcher.currentBelongsTeam}" /></c:otherwise>
+                    </c:choose>
+
+                    <select name="team" id="team">
+                        <option value="-1">Inconnu</option>
+                        <c:forEach var="team" items="${listTeams}">
+                            <c:choose>
+                                <c:when test="${empty currentTeam}"><option value="${team.teamId}">${team.teamName}</option></c:when>
+                                <c:when test="${empty currentTeam.teamId}"><option value="${team.teamId}">${team.teamName}</option></c:when>
+                                <c:when test="${team.teamId == currentTeam.teamId.teamId}"><option value="${team.teamId}" selected="selected">${team.teamName}</option></c:when>
+                                <c:otherwise><option value="${team.teamId}">${team.teamName}</option></c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                </div> 
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="function" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Fonction</label> 
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 "><input type="text" name="function"/>
+                </div> 
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br/></div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3>Informations pour les doctorants</h3>
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="phdStart" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Date de démarrage</label> 
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 "><input type="text" class="form-control"  name="phdStart"/>
+                </div> 
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="phdDefense" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Date soutenance (si connue)</label> 
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 "><input type="text" class="form-control"  name="phdDefense"/>
+                </div> 
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="phdType" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Type</label> 
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                    <select name="phdType" id="phdType">
+                        <option value="-1">Inconnu</option>
+                        <c:forEach var="phdType" items="${listPhdType}">
+                            <c:choose>
+                                <c:when test="${empty phdstudent}"><option value="${phdType.phdTypeId}">${phdType.phdTypeName}</option></c:when>
+                                <c:when test="${empty phdstudent.phdTypeId}"><option value="${phdType.phdTypeId}">${phdType.phdTypeName}</option></c:when>
+                                <c:when test="${phdType.phdTypeId == phdstudent.phdTypeId.phdTypeId}"><option value="${phdType.phdTypeId}" selected="selected">${phdType.phdTypeName}</option></c:when>
+                                <c:otherwise><option value="${phdType.phdTypeId}">${phdType.phdTypeName}</option></c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                </div> 
+            </div>
+
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Encadrants</label> 
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br/></div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3>Activités</h3>
+            </div>
+
+
+            <c:forEach var="typeActivity" items="${listActivities}">
+                <c:if test="">
+                    ${typeActivity.nameType}
+                </c:if>
+                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label for="author" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Type</label> 
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                        <select name="phdType" id="phdType">
+                            <option value="-1">Inconnu</option>
+                            <c:forEach var="phdType" items="${listPhdType}">
+                                <c:choose>
+                                    <c:when test="${empty phdstudent}"><option value="${phdType.phdTypeId}">${phdType.phdTypeName}</option></c:when>
+                                    <c:when test="${empty phdstudent.phdTypeId}"><option value="${phdType.phdTypeId}">${phdType.phdTypeName}</option></c:when>
+                                    <c:when test="${phdType.phdTypeId == phdstudent.phdTypeId.phdTypeId}"><option value="${phdType.phdTypeId}" selected="selected">${phdType.phdTypeName}</option></c:when>
+                                    <c:otherwise><option value="${phdType.phdTypeId}">${phdType.phdTypeName}</option></c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </select>
+                    </div> 
+                </div>
+            </c:forEach>
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br/></div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button class="btn btn-success">Valider</button>
+            </div> 
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br/></div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br/></div>
+
+            <input type="hidden" name="idResearcher" value="<c:choose><c:when test="${! empty researcher}">${researcher.researcherId}</c:when><c:otherwise>-1</c:otherwise></c:choose>" />
+        </form>
+
+<%@ include file="footer.jspf" %>
+
+</body>
 </html>

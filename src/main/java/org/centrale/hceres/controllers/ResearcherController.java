@@ -53,6 +53,9 @@ public class ResearcherController {
     @Autowired
     private PhdTypeRepository phdTypeRepository;
 
+    @Autowired
+    private NationalityRepository nationalityRepository;
+
     /**
      * Get researchers list in GET mode -> refused
      *
@@ -112,6 +115,9 @@ public class ResearcherController {
             String[] propertiesLTPhd = {"phdTypeName"};
             List<PhdType> listPhdType = phdTypeRepository.findAll(Sort.by(Sort.Direction.ASC, propertiesLTPhd));
             
+            String[] propertiesLN = {"nationalityId"};
+            List<Nationality> listNationalities = nationalityRepository.findAll(Sort.by(Sort.Direction.ASC, propertiesLN));
+
             ModelAndView returnedValue = new ModelAndView("researcher");
             returnedValue.addObject("connectedUser", connectedUser);
             returnedValue.addObject("researcher", researcher);
@@ -120,6 +126,7 @@ public class ResearcherController {
             returnedValue.addObject("listLaboratories", listLaboratories);
             returnedValue.addObject("listTeams", listTeams);
             returnedValue.addObject("listPhdType", listPhdType);
+            returnedValue.addObject("listNationalities", listNationalities);
 
             return returnedValue;
         }
