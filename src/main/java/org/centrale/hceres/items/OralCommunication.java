@@ -46,7 +46,7 @@ public class OralCommunication implements Serializable {
     @NotNull
     @Column(name = "id_activity")
     private Integer idActivity;
-    @Size(max = 256)
+    @Size(max = 512)
     @Column(name = "oral_communication_title")
     private String oralCommunicationTitle;
     @Basic(optional = false)

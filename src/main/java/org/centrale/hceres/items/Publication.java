@@ -50,7 +50,7 @@ public class Publication implements Serializable {
     @NotNull
     @Column(name = "id_activity")
     private Integer idActivity;
-    @Size(max = 256)
+    @Size(max = 512)
     @Column(name = "title")
     private String title;
     @Basic(optional = false)

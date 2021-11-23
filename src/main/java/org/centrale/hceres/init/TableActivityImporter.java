@@ -174,5 +174,6 @@ public abstract class TableActivityImporter extends TableImporter {
             // Next line
             lineInArray = csvReader.readNext();
         }
+        end(connection);
     }
 }

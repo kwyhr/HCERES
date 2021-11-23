@@ -338,7 +338,7 @@ class ApplicationImporter {
                 preparedStatementUpdateSeq.executeQuery();
                 preparedStatementUpdateSeq.close();
             } catch (SQLException ex) {
-                Logger.getLogger(ApplicationInitializer.class.getName()).log(Level.SEVERE, null, ex);
+                // Logger.getLogger(ApplicationInitializer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
