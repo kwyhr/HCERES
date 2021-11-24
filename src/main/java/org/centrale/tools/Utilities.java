@@ -536,6 +536,30 @@ public class Utilities {
         }
     }
 
+    
+    /**
+     * Get array from HTTP request parameter
+     *
+     * @param request
+     * @param name
+     * @return
+     */
+    public static ArrayList<Integer> getRequestArrayList(HttpServletRequest request, String name) {
+        ArrayList<Integer> returnedvalue = new ArrayList<Integer>();
+
+        String[] values = request.getParameterValues(name);
+        for(String value : values) {
+            try {
+                Integer intValue = Integer.parseInt(value);
+                returnedvalue.add(intValue);
+            } catch (NumberFormatException ex) {
+                Logger.getLogger(Utilities.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return returnedvalue;
+    }
+
     /**
      * Get array from HTTP request parameter
      *

@@ -23,6 +23,6 @@ import org.springframework.stereotype.Repository;
 public interface LaboratoryRepository extends JpaRepository<Laboratory, Integer>{
 
     @Query(name="Laboratory.findByIdLaboratory")
-    public Laboratory findByLaboratoryId(@Param("IdLaboratory")Integer LaboratoryId);
+    public Laboratory findByLaboratoryId(@Param("IdLaboratory")Integer laboratoryId);
 
 }

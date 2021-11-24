@@ -48,6 +48,9 @@ public class ResearcherController {
     private TeamRepository teamRepository;
 
     @Autowired
+    BelongsTeamRepository belongsTeamRepository;
+    
+    @Autowired
     private PhdStudentRepository phdStudentRepository;
 
     @Autowired
@@ -213,7 +216,8 @@ public class ResearcherController {
     public ModelAndView handlePost(HttpServletRequest request) {
         Connection connectedUser = org.centrale.hceres.managers.SecurityManager.getCurrentConnection(request, connectionRepository);
 
-        ResearcherManager.saveData( request, researcherRepository,  phdStudentRepository);
+        ResearcherManager.saveData( request, researcherRepository,  phdStudentRepository,
+            nationalityRepository, teamRepository, belongsTeamRepository);
         
         return listResearchers(connectedUser);
     }

@@ -9,7 +9,10 @@
  * -------------------------------------------------------------------------------- */
 package org.centrale.hceres.repositories;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import org.centrale.hceres.items.Nationality;
 import org.centrale.hceres.items.Researcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -25,6 +28,10 @@ public class ResearcherRepositoryCustomImpl implements ResearcherRepositoryCusto
     @Autowired
     @Lazy
     ResearcherRepository researcherRepository;
+
+    @Autowired
+    @Lazy
+    NationalityRepository nationalityRepository;
 
     @Override
     public Researcher create(String name, String surname, String email) {
@@ -59,6 +66,55 @@ public class ResearcherRepositoryCustomImpl implements ResearcherRepositoryCusto
         Researcher researcher = find(researcherId);
         if (researcher != null) {
             researcherRepository.delete(researcher);
+        }
+    }
+
+    @Override
+    public void setNationality(Researcher researcher, Nationality nationality) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setNationalities(Researcher researcher, List<Nationality> nationalities) {
+        List<Nationality> added = new ArrayList<Nationality>();
+        List<Nationality> removed = new ArrayList<Nationality>();
+
+        // fill arrays
+        for (Nationality nationality : researcher.getNationalityCollection()) {
+            removed.add(nationality);
+        }
+
+        for (Nationality nationality : nationalities) {
+            if (removed.contains(nationality)) {
+                removed.remove(nationality);
+            } else {
+                added.add(nationality);
+            }
+        }
+
+        // Take into account
+        boolean hasChanged = false;
+        for (Nationality nationality : added) {
+            researcher.getNationalityCollection().add(nationality);
+            nationality.getResearcherCollection().add(researcher);
+            hasChanged = true;
+        }
+
+        for (Nationality nationality : removed) {
+            researcher.getNationalityCollection().remove(nationality);
+            nationality.getResearcherCollection().remove(researcher);
+            hasChanged = true;
+        }
+
+        // repository save
+        if (hasChanged) {
+            for (Nationality nationality : added) {
+                nationalityRepository.save(nationality);
+            }
+            for (Nationality nationality : removed) {
+                nationalityRepository.save(nationality);
+            }
+            researcherRepository.save(researcher);
         }
     }
 
