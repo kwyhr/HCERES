@@ -24,6 +24,7 @@ public class Process_Researcher extends TableImporter {
     private int researcherId;
     private String researcherSurname;
     private String researcherName;
+    private String researcherEmail;
 
     /**
      *
@@ -36,8 +37,8 @@ public class Process_Researcher extends TableImporter {
     @Override
     public void init(Connection connection) {
         String theQueryTest = "SELECT Researcher_ID FROM Researcher WHERE Researcher_ID=?";
-        String theQueryInsert = "INSERT INTO Researcher(Researcher_ID,Researcher_Surname,Researcher_Name) VALUES (?, ?, ?)";
-        String theQueryUpdate = "UPDATE Researcher SET Researcher_Surname=?,Researcher_Name=? WHERE Researcher_ID=?";
+        String theQueryInsert = "INSERT INTO Researcher(Researcher_ID,Researcher_Surname,Researcher_Name, Researcher_Email) VALUES (?, ?, ?, ?)";
+        String theQueryUpdate = "UPDATE Researcher SET Researcher_Surname=?,Researcher_Name=?,Researcher_Email=? WHERE Researcher_ID=?";
 
         try {
             setPreparedStatementTest(connection, theQueryTest);
@@ -74,6 +75,7 @@ public class Process_Researcher extends TableImporter {
         researcherId = Integer.parseInt(data[0]);
         researcherSurname = data[1].replace("\"", "").trim();
         researcherName = data[2].replace("\"", "").trim();
+        researcherEmail = data[3].replace("\"", "").trim();
     }
 
     @Override
@@ -86,13 +88,14 @@ public class Process_Researcher extends TableImporter {
         preparedStatement.setInt(1, researcherId);
         preparedStatement.setString(2, researcherSurname);
         preparedStatement.setString(3, researcherName);
+        preparedStatement.setString(4, researcherEmail);
     }
 
     @Override
     public void setUpdateData(PreparedStatement preparedStatement) throws SQLException {
-        preparedStatement.setInt(3, researcherId);
+        preparedStatement.setInt(4, researcherId);
         preparedStatement.setString(1, researcherSurname);
         preparedStatement.setString(2, researcherName);
+        preparedStatement.setString(3, researcherEmail);
     }
-
 }
