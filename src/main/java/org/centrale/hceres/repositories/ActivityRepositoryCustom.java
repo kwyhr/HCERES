@@ -10,14 +10,18 @@
 package org.centrale.hceres.repositories;
 
 import org.centrale.hceres.items.Activity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.centrale.hceres.items.Researcher;
 
 /**
  *
- * @author ECN
+ * @author kwyhr
  */
-@Repository
-public interface ActivityRepository extends JpaRepository<Activity, Integer>, ActivityRepositoryCustom {
-    
+public interface ActivityRepositoryCustom {
+    /**
+     * Add an activity to a researcher
+     * @param activity
+     * @param researcher 
+     */
+	public void addResearcher(Activity activity,Researcher researcher);
 }
+
