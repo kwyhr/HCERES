@@ -20,6 +20,7 @@ import org.centrale.hceres.items.PhdStudent;
 import org.centrale.hceres.items.Researcher;
 import org.centrale.hceres.repositories.*;
 import org.centrale.tools.Utilities;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -36,7 +37,7 @@ public class ResearcherManager {
 
         boolean isNew = false;
         Date now = Utilities.getCurrentDate();
-        
+
         // Get parameters
         int refChercheur = -1;
         Researcher researcher = null;
@@ -56,12 +57,16 @@ public class ResearcherManager {
         ArrayList<Integer> nationalitiesInt = Utilities.getRequestArrayList(request, "nationality");
         Integer laboratoryId = Utilities.getRequestInteger(request, "laboratory");
         Integer teamId = Utilities.getRequestInteger(request, "team");
-        
+
+        String login = Utilities.getRequestString(request, "loginResearcher");
+        String password = Utilities.getRequestString(request, "passwordResearcher");
+
         ArrayList<Nationality> nationalities = new ArrayList<Nationality>();
         for (int nationalityId : nationalitiesInt) {
             Nationality nationality = nationalityRepository.findByNationalityId(nationalityId);
             nationalities.add(nationality);
         }
+        
         // Set data
         if (researcher == null) {
             // Create researcher
@@ -72,7 +77,15 @@ public class ResearcherManager {
         researcher.setResearcherSurname(surname);
         researcher.setResearcherOrcid(orcid);
         researcher.setResearcherEmail(email);
-        
+        if ((login != null) && (!login.isEmpty())) {
+            researcher.setResearcherLogin(login);
+            if ((password != null) && (!password.isEmpty())) {
+                Pbkdf2PasswordEncoder encoder = new Pbkdf2PasswordEncoder();
+                String encodedPassword = encoder.encode(password);
+                researcher.setResearcherPassword(encodedPassword);
+            }
+        }
+
         researcherRepository.setNationalities(researcher, nationalities);
         if (teamId != null) {
             Team team = teamRepository.findByTeamId(teamId);
@@ -88,10 +101,10 @@ public class ResearcherManager {
                 } else if (currentTeam.getTeamId().getTeamId().intValue() != team.getTeamId().intValue()) {
                     // Current team is not the selected one -> close current belongsteam
                     Date yesterday = Utilities.getCurrentDate();
-                    yesterday.setTime( yesterday.getTime() - (long)1000*60*60*24 );
+                    yesterday.setTime(yesterday.getTime() - (long) 1000 * 60 * 60 * 24);
                     currentTeam.setLeavingDate(yesterday);
                     belongsTeamRepository.save(currentTeam);
-                    
+
                     // Create new one
                     currentTeam = new BelongsTeam();
                     currentTeam.setOnboardingDate(now);
@@ -100,12 +113,12 @@ public class ResearcherManager {
                 }
             }
         }
-        
+
         // Save data
         researcherRepository.save(researcher);
         refChercheur = researcher.getResearcherId();
         researcher = researcherRepository.getOne(refChercheur);
-        
+
         // Phd Student info
         if (isPhdStudent(request)) {
             // Get parameters

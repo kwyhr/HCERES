@@ -10,9 +10,7 @@
 package org.centrale.hceres.managers;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.StringTokenizer;
 import org.centrale.hceres.items.Activity;
 import org.centrale.hceres.items.Publication;
 import org.centrale.hceres.items.Researcher;
@@ -55,6 +53,12 @@ public class ActivityManager {
         return match;
     }
 
+    /**
+     * find authors according to author's list
+     * @param authors
+     * @param listResearcher
+     * @return 
+     */
     private static List<Researcher> findAuthors(String authors, List<Researcher> listResearcher) {
         List<Researcher> match = new ArrayList<Researcher>();
         String[] authorsList = authors.split(",");
@@ -80,7 +84,7 @@ public class ActivityManager {
     }
 
     /**
-     * Link reseachers to activito according to authors
+     * Link reseachers to activity according to authors
      *
      * @param researcherRepository
      * @param activityRepository

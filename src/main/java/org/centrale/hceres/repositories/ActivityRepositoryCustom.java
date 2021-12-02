@@ -9,19 +9,38 @@
  * -------------------------------------------------------------------------------- */
 package org.centrale.hceres.repositories;
 
+import java.util.HashMap;
+import java.util.List;
 import org.centrale.hceres.items.Activity;
 import org.centrale.hceres.items.Researcher;
+import org.centrale.hceres.items.TypeActivity;
 
 /**
  *
  * @author kwyhr
  */
 public interface ActivityRepositoryCustom {
+
     /**
      * Add an activity to a researcher
+     *
      * @param activity
-     * @param researcher 
+     * @param researcher
      */
-	public void addResearcher(Activity activity,Researcher researcher);
-}
+    public void addResearcher(Activity activity, Researcher researcher);
 
+    /**
+     * find researcher activities
+     * @param researcher
+     * @return 
+     */
+    public HashMap<Integer, List<Activity>> findResearcherActivities(Researcher researcher);
+
+    /**
+     * find researcher activities
+     * @param researcher
+     * @param typeActivity
+     * @return 
+     */
+    public List<Activity> findResearcherActivities(Researcher researcher, TypeActivity typeActivity);
+}

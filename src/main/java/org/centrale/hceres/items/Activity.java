@@ -11,6 +11,7 @@ package org.centrale.hceres.items;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashMap;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -750,6 +751,105 @@ public class Activity implements Serializable {
     }
 
     /**
+     * To get the activity title
+     *
+     * @return
+     */
+    public HashMap<String, String> getInfos() {
+        HashMap<String, String> returnedValue = new HashMap<String, String>();
+        returnedValue.put("type", this.getIdTypeActivity().getNameType());
+        returnedValue.put("title", "");
+        returnedValue.put("authors", "");
+        
+        switch (this.getIdTypeActivity().getIdTypeActivity()) {
+            case 1: // Publication 
+                Publication publication = this.getPublication();
+                returnedValue.putAll(publication.getInfos());
+            case 2: // Book 
+                break;
+            case 3: // Book Chapter 
+                break;
+            case 4: // Patent Licence Invention Disclosure 
+                break;
+            case 5: // Editorial Activity 
+                break;
+            case 6: // Platform 
+                break;
+            case 7: // Tool Product Decision Support Tool 
+                break;
+            case 8: // Tool Product Biocollection 
+                break;
+            case 9: // Tool Product Software 
+                break;
+            case 10: // Tool Product Database 
+                break;
+            case 11: // Tool Product Cohort 
+                break;
+            case 12: // Educational Output 
+                break;
+            case 13: // National International Collaboration 
+                break;
+            case 14: // Network 
+                break;
+            case 15: // Invited Seminar 
+                break;
+            case 16: // Scientific Expertise 
+                break;
+            case 17: // Research Contract Funded Public Charitable Inst 
+                break;
+            case 18: // Training Thesis Publication 
+                break;
+            case 19: // Involvement Training M1 M2 Trainee Hosting 
+                break;
+            case 20: // Involvement Training Pedagogical Responsibility 
+                break;
+            case 21: // Post Doc 
+                break;
+            case 22: // Public Outreach 
+                break;
+            case 23: // Reviewing Journal Articles 
+                break;
+            case 24: // Project Evaluation Thesis 
+                break;
+            case 25: // Project Evaluation Grant 
+                break;
+            case 26: // Lab Evaluation 
+                break;
+            case 27: // Responsibility Institutional Comitee Jury 
+                break;
+            case 28: // Sr Responsibility Learned Scientific Society 
+                break;
+            case 29: // Sr Award 
+                break;
+            case 30: // Meeting Congress Org 
+                break;
+            case 31: // Invited Oral Communication 
+                break;
+            case 32: // Oral Communication Poster 
+                break;
+            case 33: // Outgoing Mobility 
+                break;
+            case 34: // Incoming Mobility 
+                break;
+            case 35: // Sei Cifre Fellowship 
+                break;
+            case 36: // Sei Labcom Creation 
+                break;
+            case 37: // Sei Network Unit Creation 
+                break;
+            case 38: // Sei Company Creation 
+                break;
+            case 39: // Sei Lead Consortium Industry 
+                break;
+            case 40: // Sei Industrial R D Contract 
+                break;
+            case 41: // Sei Clinical Trial 
+                break;
+        }
+        return returnedValue;
+    }
+
+    /**
      *
      * @return
      */
@@ -786,5 +886,5 @@ public class Activity implements Serializable {
     public String toString() {
         return "org.centrale.hceres.items.Activity[ idActivity=" + idActivity + " ]";
     }
-    
+
 }

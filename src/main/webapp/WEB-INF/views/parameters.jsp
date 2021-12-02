@@ -41,7 +41,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             
             <form action="chechpublications.do" method="POST">
-            <input type="hidden" name="idResearcher" value="<c:choose><c:when test="${! empty researcher}">${researcher.researcherId}</c:when><c:otherwise>-1</c:otherwise></c:choose>" />
+                <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
                 <button class="btn btn-success">Vérifier les publications</button>
             </form>
             </div>

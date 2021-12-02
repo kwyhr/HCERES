@@ -12,6 +12,7 @@ package org.centrale.hceres.items;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.HashMap;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -242,6 +243,19 @@ public class Publication implements Serializable {
      */
     public void setPublicationTypeId(PublicationType publicationTypeId) {
         this.publicationTypeId = publicationTypeId;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public HashMap<String, String> getInfos() {
+        HashMap<String, String> returnedValue = new HashMap<String, String>();
+        returnedValue.put("title", this.getTitle());
+        returnedValue.put("authors", this.getAuthors());
+        returnedValue.put("source", this.getSource());
+        
+        return returnedValue;
     }
 
     /**

@@ -9,6 +9,8 @@
  * -------------------------------------------------------------------------------- */
 package org.centrale.hceres.controllers;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.centrale.hceres.items.*;
@@ -58,6 +60,12 @@ public class ResearcherController {
 
     @Autowired
     private NationalityRepository nationalityRepository;
+
+    @Autowired
+    private ActivityRepository activityRepository;
+
+    @Autowired
+    TypeActivityRepository typeActivityRepository;
 
     /**
      * Get researchers list in GET mode -> refused
@@ -121,6 +129,9 @@ public class ResearcherController {
             String[] propertiesLN = {"nationalityId"};
             List<Nationality> listNationalities = nationalityRepository.findAll(Sort.by(Sort.Direction.ASC, propertiesLN));
 
+            List<TypeActivity> listeType = typeActivityRepository.findAll();
+            HashMap<Integer, List<Activity>> listActivities = activityRepository.findResearcherActivities(researcher);
+            
             ModelAndView returnedValue = new ModelAndView("researcher");
             returnedValue.addObject("connectedUser", connectedUser);
             returnedValue.addObject("researcher", researcher);
@@ -130,6 +141,8 @@ public class ResearcherController {
             returnedValue.addObject("listTeams", listTeams);
             returnedValue.addObject("listPhdType", listPhdType);
             returnedValue.addObject("listNationalities", listNationalities);
+            returnedValue.addObject("listTypeActivities", listeType);
+            returnedValue.addObject("listActivities", listActivities);
 
             return returnedValue;
         }
