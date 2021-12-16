@@ -117,5 +117,15 @@ public class ResearcherRepositoryCustomImpl implements ResearcherRepositoryCusto
             researcherRepository.save(researcher);
         }
     }
+    
+    public long countAllResearchers()
+    {
+        return researcherRepository.countAllResearchers();
+    }
+    
+    public long countAllInternationalResearchers()
+    {
+        return researcherRepository.countAllInternationalResearchers();
+    }
 
 }
