@@ -12,6 +12,7 @@ package org.centrale.hceres.repositories;
 import java.util.List;
 import org.centrale.hceres.items.Nationality;
 import org.centrale.hceres.items.Researcher;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -54,5 +55,28 @@ public interface ResearcherRepositoryCustom {
      * @param nationalities 
      */
     public void setNationalities(Researcher researcher, List<Nationality> nationalities);
+    
+    /**
+     * Calculate the number of researchers 
+     * 
+     * @return 
+     */
+    @Query(value="SELECT COUNT(*) FROM researcher",nativeQuery =true)
+    public long countAllResearchers();
+    
+    /**
+     * Calculate the number of international researchers
+     * 
+     * @return 
+     */
+    @Query(value="SELECT COUNT(*)FROM researcher\n" +
+                "INNER JOIN researcher_nationality USING(researcher_id)\n" +
+                "INNER JOIN nationality USING(nationality_id)\n" +
+                "WHERE nationality_name NOT LIKE 'Français'",nativeQuery =true)
+    public long countAllInternationalResearchers();
+    
+    
+    
+    
 }
 
