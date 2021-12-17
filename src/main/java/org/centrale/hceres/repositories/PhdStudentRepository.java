@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
  * @author ECN
  */
 @Repository
-public interface PhdStudentRepository extends JpaRepository<PhdStudent, Integer>{
+public interface PhdStudentRepository extends JpaRepository<PhdStudent, Integer>,PhdStudentRepositoryCustom{
 
     @Query("SELECT p FROM PhdStudent p WHERE p.researcherId = :researcherId")
     public PhdStudent findByResearcherId(@Param("researcherId")Integer researcherId);
