@@ -37,4 +37,9 @@ public class PhdStudentRepositoryCustomImpl implements PhdStudentRepositoryCusto
         
     }
     
+    public long CountAllDefendedThesis(String date1,String date2)
+    {
+        return phdStudentRepository.CountAllDefendedThesis(date1, date2);
+    }
+    
 }

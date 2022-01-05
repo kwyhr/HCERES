@@ -4,6 +4,8 @@
  */
 package org.centrale.hceres.repositories;
 
+import java.util.Collection;
+import org.centrale.hceres.items.Publication;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -33,4 +35,8 @@ public class PublicationRepositoryCustomImpl implements PublicationRepositoryCus
         
     }
     
+    public Collection <Publication> countPublicationByType()
+    {
+        return publicationRepository.countPublicationByType();
+    }
 }
