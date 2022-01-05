@@ -18,6 +18,6 @@ import org.springframework.stereotype.Repository;
  * @author ECN
  */
 @Repository
-public interface SrAwardRepository extends JpaRepository<SrAward, Integer>{
+public interface SrAwardRepository extends JpaRepository<SrAward, Integer>,SrAwardRepositoryCustom{
     
 }

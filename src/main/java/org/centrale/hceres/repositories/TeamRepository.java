@@ -20,9 +20,9 @@ import org.springframework.stereotype.Repository;
  * @author ECN
  */
 @Repository
-public interface TeamRepository extends JpaRepository<Team, Integer>{
+public interface TeamRepository extends JpaRepository<Team, Integer>,TeamRepositoryCustom{
 
     @Query(name="Team.findByTeamId")
-    public Team findByTeamId(@Param("teamId")Integer teamId);
-    
+    public Team findByTeamId(@Param("teamId")Integer teamId);  
+        
 }
