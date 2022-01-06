@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Local -->
-        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="stylesheet" type="text/css" href="css/styleGrpOUSSAMA.css" />
 
         <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
@@ -34,14 +34,12 @@
         <%@ include file="header.jspf" %>
 
         <h1 class="headTitle">Création / Modification chercheur</h1> 
-
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br/></div>
             <c:choose>
                 <c:when test="${empty researcher}"><c:set var="currentContract" value="" /></c:when>
                 <c:otherwise><c:set var="currentContract" value="${researcher.currentContract}" /></c:otherwise>
             </c:choose>
 
-        <form action="newChercheur.do" method="POST">
+        <form class="chercheurForm" action="newChercheur.do" method="POST">
             <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <label for="nameResearcher" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 required">Nom</label> 
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
