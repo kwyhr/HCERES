@@ -1,13 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<link rel="stylesheet" type="text/css" href="css/styleGrpOUSSAMA.css" />
 <!-- footer -->
 <footer class="footer-default" data-spy="affixbottom" data-offset-bottom="27">
-    <form action="about.do" method="GET" >
-        <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
-        ©2021 - CRTI - Ecole Centrale Nantes - France
-        <div class="about">
-            <a href="#" onclick="this.parentNode.parentNode.submit();"><img class="smallIcon" src="images/About.png" alt="about"/></a>
-        </div>
-    </form>
+    <div class="text5"></div>
+    <div class="text2"><p class="footer_text"> ©2021 - CRTI - Ecole Centrale Nantes - France </p></div>
+    <div class="footer1">
+        <form action="about.do" method="GET" >
+            <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
+            <div class="icon1"><a href="about.do" onclick="this.parentNode.parentNode.submit();"><img class="about" src="images/eva_question-mark-circle-fill.svg" alt="about"/></a></div>
+
+        </form>
+    </div>
+
 </footer>

@@ -1,40 +1,33 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
-    <div class="connexionInfos" z-index="256">
-        <form id="disconnectForm" action="disconnect.do" method="POST">
-        <fieldset class="form-group border">
-            <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
-            <c:choose>
-                <c:when test="${empty connectedUser.researcherId}">
-                    <p>Admin : Connecté</p>
-                </c:when>
-                <c:otherwise>
-                    <p>${empty connectedUser.researcherId.researcherSurname} : Connecté</p>
-                </c:otherwise>
-            </c:choose>
-            <button id="Déconnexion" class="btn pull-right btn-primary btn-sm"><span class="glyphicon glyphicon-ok"></span>Déconnexion</button><br/>
-        </fieldset>
-        </form>
+
+    <div class="img">
+        <a class="navbar-brand" class="nav-link" onclick="document.getElementById('accueilForm').submit();">
+            <img class="logo" src="images/logo5.png" width="50" height="50" alt="logo"/>
+        </a>
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse" data-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
 
-    <ul class="menuBar">
-        <li><img id="logo" src="images/logo.png" alt="logo"/></li>
+    <div class="nav">
 
-        <form id="accueilForm" action="welcome.do" method="POST" >
+        <form id="accueilForm" class="formHeader" action="welcome.do" method="POST" >
             <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
             <li><a onclick="document.getElementById('accueilForm').submit();">Accueil</a></li>
         </form>
 
         <c:choose>
             <c:when test="${connectedUser.connectionStatus == 1}">
-                <form id="researchersForm" action="researchers.do" method="POST" >
+                <form id="researchersForm" class="formHeader" action="researchers.do" method="POST" >
                     <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
-                    <li><a onclick="document.getElementById('researchersForm').submit();">Chercheurs</a></li>
+                    <li><a class="nav-link" onclick="document.getElementById('researchersForm').submit();">Chercheurs</a></li>
                 </form>
             </c:when>
             <c:otherwise>
-                <form id="researcherForm" action="researcher.do" method="POST" >
+                <form id="researcherForm" class="formHeader" action="researcher.do" method="POST" >
                     <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
                     <li><a onclick="document.getElementById('researcherForm').submit();">Informations</a></li>
                 </form>
@@ -45,28 +38,59 @@
             <c:when test="${connectedUser.connectionStatus == 0}">
             </c:when>
             <c:otherwise>
-                <form id="activitiesForm" action="activities.do" method="POST" >
+                <form id="activitiesForm" class="formHeader" action="activities.do" method="POST" >
                     <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
-                    <li><a onclick="document.getElementById('activitiesForm').submit();">Activités</a></li>
+                    <li class="nav-item active"><a onclick="document.getElementById('activitiesForm').submit();">Activités</a></li>
                 </form>
             </c:otherwise>
         </c:choose>
 
-        <form id="statisticsForm" action="statistics.do" method="POST" >
+        <c:choose>
+            <c:when test="${connectedUser.connectionStatus == 0}">
+            </c:when>
+            <c:otherwise>
+                <form id="AjouterActivite" class="formHeader" action="NouvActivite.do" method="GET" >
+                    <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
+                    <li class="nav-item active">
+                        <a class="nav-link" onclick="document.getElementById('AjouterActivite').submit();">
+                            Ajout d'activités 
+                        </a>
+                    </li>
+                </form>
+            </c:otherwise>
+        </c:choose>
+
+
+
+        <form id="statisticsForm" class="formHeader" action="statistics.do" method="POST" >
             <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
             <li><a onclick="document.getElementById('statisticsForm').submit();">Statistiques</a></li>
         </form>
 
-        <c:choose>
-            <c:when test="${connectedUser.connectionStatus == 1}">
-                <form id="parametersForm" action="parametersForm.do" method="POST" >
-                    <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
-                    <li><a onclick="document.getElementById('parametersForm').submit();">Paramètres</a></li>
-                </form>
-            </c:when>
-            <c:otherwise>
-            </c:otherwise>
-        </c:choose>
-    </ul>
+    </div>
+    <div class="connexion col">
+        <div class="param">
+
+
+            <c:choose>
+                <c:when test="${connectedUser.connectionStatus == 1}">
+                    <form id="parametersForm" class="formHeader" action="parametersForm.do" method="POST" >
+                        <input type="hidden" name="connectionCode" value="${connectedUser.connectionCode}" />
+                        <a class="nav-link" onclick="document.getElementById('parametersForm').submit();">
+                            <img class="btn" src="images/param.png" alt="Submit Form"/>
+                        </a>
+                    </form>
+                </c:when>
+                <c:otherwise>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div class="connexionInfos">
+            <form class="formHeader" action="disconnect.do" method="POST">
+                <input class="btn" type="image" src="images/exit.png" alt="Submit" />
+            </form>
+        </div>
+
+    </div>
 
 </header>

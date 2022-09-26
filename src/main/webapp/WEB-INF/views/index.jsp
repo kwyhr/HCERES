@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Local -->
-        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="stylesheet" type="text/css" href="css/styleGrpOUSSAMA.css" />
 
         <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
@@ -29,31 +29,39 @@
         <script type="text/javascript" src="DataTables/js/dataTables.rowReorder.min.js"></script>
     </head>
     <body>
-        <ul class="menuBar">
-            <li><img id="logo" src="images/logo.png" alt="logo"/></li>
-        </ul>
+        <img id="logo" src="images/logo_1.png" alt="logo" />
 
-        <div class="connexionInfos">
-            <form action="login.do" method="POST">
-                <p>Connexion</p>
-                <input type="login" name="user" placeholder="Username" /><br/>
-                <input type="password" name="passwd" placeholder="Password"/><br/>
-                <button id="Valider" class="btn btn-block btn-success btn-sm"><span class="glyphicon glyphicon-ok"></span>Valider</button><br/>
-            </form>
+        <div class="wrapper">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="images/logoCarre.png" id="icon" alt="User Icon" />
+                </div>
+
+                <div class="connexion_text">Connexion</div>
+
+                <!-- Login Form -->
+                <form action="login.do" method="POST">
+
+                    <div id="login">
+                        <img src="images/user-solid.svg" alt="user_icon" id="user_icon">
+                        <input type="text" id="login_form"  name="user" placeholder="Nom d'utilisateur">   
+                    </div>
+
+
+                    <div id="password">
+                        <img src="images/key-solid.svg" alt="lock_icon" id="pw_icon">
+                        <input type="password" id="password_form" name="passwd" placeholder="Mot de passe">
+
+                    </div>
+
+                    <input type="submit" value="Connexion">
+                </form>
+            </div>
         </div>
 
-        <h1 class="headTitle">Intranet CRTI</h1>
-
-        <div class="mainInfos">
-            <p>Bienvenue sur l'espace interne des chercheurs de l'université de Nantes</p>
-        </div>
-
-        <div class="mainInfos">
-            <p>Informations relatives à l'intranet à modifier ?</p>
-        </div>
-
-        <div class="about">
-            <a href="about.do" class="noborder"><img class="smallIcon" src="images/About.png" alt="about"/></a>
-        </div>
+        <%@ include file="footer.jspf" %>
 
     </body>
