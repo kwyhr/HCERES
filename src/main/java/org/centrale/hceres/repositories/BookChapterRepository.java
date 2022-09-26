@@ -18,6 +18,6 @@ import org.springframework.stereotype.Repository;
  * @author ECN
  */
 @Repository
-public interface BookChapterRepository extends JpaRepository<BookChapter, Integer>{
+public interface BookChapterRepository extends JpaRepository<BookChapter, Integer>,BookChapterRepositoryCustom{
     
 }

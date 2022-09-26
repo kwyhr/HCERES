@@ -18,6 +18,6 @@ import org.springframework.stereotype.Repository;
  * @author ECN
  */
 @Repository
-public interface PublicationRepository extends JpaRepository<Publication, Integer>{
+public interface PublicationRepository extends JpaRepository<Publication, Integer>,PublicationRepositoryCustom{
     
 }

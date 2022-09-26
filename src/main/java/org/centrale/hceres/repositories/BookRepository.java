@@ -22,7 +22,7 @@ import org.springframework.stereotype.Repository;
  * @author ECN
  */
 @Repository
-public interface BookRepository extends JpaRepository<Book, Integer>{
+public interface BookRepository extends JpaRepository<Book, Integer>,BookRepositoryCustom{
     
     @Query("SELECT b FROM Book b WHERE b.editor = :editor")
     public Collection<Book> findAllByEditor(@Param("editor")String editor);
